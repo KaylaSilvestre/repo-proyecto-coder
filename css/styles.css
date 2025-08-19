@@ -5,17 +5,34 @@
     padding: 0;
 }
 
-header {
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  /* background-color: #AAB4A0; */
-  background-color: #AAB39C;
-  text-align: center;
-  position: fixed; 
+.popup {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  background: linear-gradient(90deg, #f8b195, #f67280);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  z-index: 1000;   /* más alto que el header */
+  animation: slideDown 0.6s ease-out;
+}
+
+header {
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #AAB39C;
+  text-align: center;
+  position: fixed; 
+  top: 40px; 
+  left: 0;
+  width: 100%;
   z-index: 10;
+}
+
+main {
+  padding-top: 120px;  /* se ajusta para que el contenido no quede debajo */
 }
 
 body {
@@ -25,23 +42,8 @@ body {
     font-weight: 400;
 }
 
-main {
-  padding-top: 70px;
-}
-
 .popup p {
   margin: 0; /* Elimina el espacio vertical */
-}
-
-.popup {
-  left: 0;
-  /* background:	#D4A017; */
-  background: linear-gradient(90deg, #f8b195, #f67280);
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  z-index: 1000;
 }
 
 .popup {
@@ -611,7 +613,6 @@ color: #3E5E4E;
     transform: translate(-50%, -50%);
 }
 
-
 footer {
   border-top: 1px solid #8a8585;
   margin-top: 20px;
@@ -640,7 +641,6 @@ footer li>a {
   font-size: 18px;
 }
 
-
 /* Botón hamburguesa - solo en móvil */
 .menu-toggle {
   display: none;
@@ -656,11 +656,13 @@ footer li>a {
 /* En móviles, mostrar hamburguesa y ocultar menú */
 @media (max-width: 768px) {
 
-main {
-  padding-top: 30px;
+header {
+  top: 65px;
 }
 
-
+main {
+  padding-top: 150px;
+}
 
   .menu-toggle {
     display: block;
