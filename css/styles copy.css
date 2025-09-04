@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* * {
+* {
   margin: 0;
   padding: 0;
 }
@@ -16,10 +16,11 @@
   text-align: center;
   font-weight: bold;
   z-index: 1000;
+  /* más alto que el header */
   animation: slideDown 0.6s ease-out;
-} */
+}
 
-/* header {
+header {
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #AAB39C;
@@ -29,24 +30,28 @@
   left: 0;
   width: 100%;
   z-index: 10;
-} */
+}
 
-/* main {
+main {
   padding-top: 120px;
+  /* se ajusta para que el contenido no quede debajo */
+}
 
-} */
-
-/* body {
+body {
   background-color: #FAF9F6;
   font-family: "Inter", sans-serif;
   color: #2E4C3F;
   font-weight: 400;
-} */
+}
 
-/* .popup p {
+.popup p {
   margin: 0;
-Elimina el espacio vertical 
-} */
+  /* Elimina el espacio vertical */
+}
+
+.popup {
+  animation: slideDown 0.6s ease-out;
+}
 
 @keyframes slideDown {
   from {
@@ -58,13 +63,13 @@ Elimina el espacio vertical
   }
 }
 
-/* .nav-container {
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-} */
+}
 
-/* .logo img {
+.logo img {
   width: 60px;
 }
 
@@ -72,15 +77,15 @@ Elimina el espacio vertical
   display: flex;
   align-items: center;
   gap: 10px;
-} */
+}
 
-/* .logo-titulo {
+.logo-titulo {
   font-size: 22px;
   font-weight: 700;
   color: #333;
-} */
- 
-/* .menu ul {
+}
+
+.menu ul {
   display: flex;
   list-style: none;
   gap: 30px;
@@ -102,9 +107,9 @@ Elimina el espacio vertical
   text-decoration: #5a6452 2px underline;
   font-weight: bold;
   color: #5a6452;
-} */
+}
 
-/* h1,
+h1,
 h1,
 h3 {
   font-family: "Playfair Display", serif;
@@ -123,7 +128,7 @@ li>a {
 a {
   text-decoration: none;
   color: #353535;
-} */
+}
 
 .barrabuscadora {
   display: flex;
@@ -136,14 +141,15 @@ a {
   margin: 20px auto;
 }
 
-/* .barra-buscadora input[type="text"] {
+.barrabuscadora input[type="text"] {
   border: none;
   padding: 10px 15px;
   width: 100%;
   font-size: 16px;
+  /* outline: none; */
 }
 
-.barra-buscadora button {
+.barrabuscadora button {
   background-color: #5a6452;
   border: none;
   padding: 10px 15px;
@@ -153,14 +159,14 @@ a {
   justify-content: center;
 }
 
-.barra-buscadora button:hover {
+.barrabuscadora button:hover {
   background-color: #3E5E4E;
 }
 
-.barra-buscadora button i {
+.barrabuscadora button i {
   color: white;
   font-size: 16px;
-} */
+}
 
 .titulo {
   text-align: center;
@@ -172,7 +178,7 @@ a {
   font-weight: 900;
 }
 
-/* #slogan {
+#slogan {
   font-size: 25px;
   font-family: "Playfair Display", serif;
   text-align: center;
@@ -185,25 +191,11 @@ a {
   text-align: center;
   font-size: 30px;
   font-weight: 900;
-} */
-
-/* .slider-galeria {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
 }
 
-.slider-galeria img {
-  width: 400px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
-} */
 
 /* Contenedor centrado, tamaño máximo, sombra y z-index */
-/* #carouselExampleIndicators {
+#carouselExampleIndicators {
   max-width: 600px;
   max-height: 600px;
   margin: 40px auto;
@@ -211,10 +203,10 @@ a {
   border-radius: 20px;
   overflow: hidden;
 
-} */
+}
 
 /* Efecto 3D y tamaño de imagen */
-/* .carousel-item img {
+.carousel-item img {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   width: 100%;
@@ -222,19 +214,19 @@ a {
   object-fit: contain;
   background: #000;
 
-} */
+}
 
-/* .carousel-item.active img {
+.carousel-item.active img {
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
-} */
+}
 
-/* .carousel-inner {
+.carousel-inner {
   perspective: 1200px;
   height: 100%;
-} */
+}
 
 /* Flechas básicas que no cambian de color */
-/* .carousel-control-prev,
+.carousel-control-prev,
 .carousel-control-next {
   width: 40px;
   height: 40px;
@@ -249,10 +241,10 @@ a {
   text-decoration: none;
   z-index: 2;
   outline: none;
-} */
+}
 
 /* Mantener el mismo color al presionar o enfocar */
-/* .carousel-control-prev:focus,
+.carousel-control-prev:focus,
 .carousel-control-next:focus,
 .carousel-control-prev:active,
 .carousel-control-next:active,
@@ -266,7 +258,7 @@ a {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: none;
-
+  /* ocultamos iconos por defecto */
 }
 
 .carousel-control-prev::after {
@@ -275,14 +267,14 @@ a {
 
 .carousel-control-next::after {
   content: ">";
-} */
+}
 
 /* Indicadores por encima de la imagen */
-/* .carousel-indicators {
+.carousel-indicators {
   z-index: 3;
-} */
+}
 
-/* .boton-ver-productos {
+.boton-ver-productos {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -298,11 +290,10 @@ a {
   cursor: pointer;
   text-align: center;
   align-items: center;
-} */
-
+}
 
 /* Sección de reseñas */
-/* .resenias {
+.resenias {
   background-color: #f0f0f0;
   padding: 30px;
   margin-top: 60px;
@@ -345,10 +336,10 @@ a {
   font-weight: normal;
   color: #444;
   font-size: 18px;
-} */
+}
 
 /* Sección de productos */
-/* .productos {
+.productos {
   padding: 60px 20px;
   text-align: center;
   background: #f9f9f9;
@@ -389,9 +380,9 @@ a {
 .card p {
   font-size: 0.95rem;
   color: #666;
-} */
+}
 
-/* .precio-acciones {
+.precio-acciones {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -419,11 +410,11 @@ a {
 .acciones i:hover {
   transform: scale(1.2);
   color: #25412e;
-} */
+}
 
 
 /* Sección acordeon */
-/* .accordion-button {
+.accordion-button {
   background-color: transparent;
   color: #25412e;
   font-weight: bold;
@@ -443,7 +434,7 @@ a {
   transition: transform 0.3s ease;
 }
 
-
+/* Rotar flecha cuando esta abierto */
 .accordion-button:not(.collapsed)::after {
   transform: rotate(90deg);
 }
@@ -458,7 +449,7 @@ a {
   transition: background-color 0.3s ease;
 }
 
-
+/* Enlaces dentro del acordeon */
 .accordion-body a {
   color: #333;
   text-decoration: none;
@@ -486,11 +477,9 @@ a {
 
 .accordion-button:focus {
   box-shadow: none !important;
-} */
+}
 
-
-
-/* .titulo-lista {
+.titulo-lista {
   color: #3E5E4E;
 }
 
@@ -504,6 +493,7 @@ a {
 }
 
 .contacto-ubicacion {
+  /* background-color: #D8E8DC; */
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
   padding: 50px;
@@ -513,16 +503,17 @@ a {
   justify-content: center;
   gap: 200px;
   line-height: 2;
-} */
+}
 
 /* Sección formulario */
-/* .formulario h2,
+.formulario h2,
 .contacto h2,
 .ubicacion h2 {
   text-align: center;
   font-family: "Playfair Display", serif;
   margin-bottom: 30px;
   font-size: 30px;
+  font-family: "Playfair Display", serif;
   font-weight: 900;
 }
 
@@ -556,10 +547,10 @@ a {
   padding: 5px;
   margin: 5px 0;
   width: 100%;
-} */
+}
 
 /* Sección inicio de sesión */
-/* .inicio-de-sesion {
+.inicio-de-sesion {
   background-color: #ffffff;
   padding: 50px;
   border-radius: 8px;
@@ -570,6 +561,14 @@ a {
 
 .inicio-de-sesion input {
   margin-bottom: 30px;
+}
+
+.inicio-de-sesion h2 {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
 }
 
 .inicio-de-sesion input::placeholder,
@@ -602,11 +601,11 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3); */
+  background: rgba(0, 0, 0, 0.3);
   /* Ahora más transparente */
+}
 
-
-/* .sobre-nosotros h2,
+.sobre-nosotros h2,
 .sobre-nosotros p {
   position: relative;
   z-index: 1;
@@ -634,10 +633,10 @@ a {
 }
 
 .card p {
-  font-family: "Inter", sans-serif; */
+  font-family: "Inter", sans-serif;
+}
 
 
-/* 
 footer {
   border-top: 1px solid #8a8585;
   margin-top: 20px;
@@ -664,7 +663,7 @@ footer li>a {
 .iconos-footer a {
   color: #333;
   font-size: 18px;
-} */
+}
 
 /* Botón hamburguesa - solo en móvil */
 .menu-toggle {

@@ -1,0 +1,414 @@
+// ===============================
+// Variables
+// ===============================
+$color-principal: #5a6452;
+$color-secundario: #3E5E4E;
+$color-fondo: #FAF9F6;
+$color-texto: #2E4C3F;
+$color-header: #AAB39C;
+$color-footer: #AAB4A0;
+$font-principal: "Inter", sans-serif;
+$font-titulos: "Playfair Display", serif;
+
+// ===============================
+// Mixins
+// ===============================
+@mixin sombra($x:0, $y:2px, $blur:5px, $color: rgba(0,0,0,0.1)) {
+  box-shadow: $x $y $blur $color;
+}
+
+@mixin boton($bg, $color:#fff) {
+  background-color: $bg;
+  color: $color;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  &:hover {
+    background-color: darken($bg, 10%);
+  }
+}
+
+// ===============================
+// Global
+// ===============================
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $color-fondo;
+  font-family: $font-principal;
+  color: $color-texto;
+  font-weight: 400;
+}
+
+h1, h2, h3 {
+  font-family: $font-titulos;
+  color: #546B56;
+}
+
+a {
+  text-decoration: none;
+  color: #353535;
+}
+
+ul { list-style: none; }
+
+// ===============================
+// Popup
+// ===============================
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #f8b195, #f67280);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  z-index: 1000;
+  animation: slideDown 0.6s ease-out;
+
+  p { margin: 0; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+// ===============================
+// Header
+// ===============================
+header {
+  padding: 10px 20px;
+  @include sombra(0,2px,5px,rgba(0,0,0,0.1));
+  background-color: $color-header;
+  text-align: center;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img { width: 60px; }
+
+    .logo-titulo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #333;
+    }
+  }
+
+  .menu ul {
+    display: flex;
+    gap: 30px;
+  }
+
+  .iconos {
+    a {
+      margin-left: 20px;
+      color: #333;
+      font-size: 18px;
+      padding-right: 10px;
+
+      &:hover { color: $color-principal; }
+    }
+  }
+}
+
+.pagina-actual {
+  text-decoration: $color-principal 2px underline;
+  font-weight: bold;
+  color: $color-principal;
+}
+
+// ===============================
+// Botones
+// ===============================
+.boton {
+  @include boton($color-principal);
+}
+
+.boton-ver-productos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+// ===============================
+// Productos
+// ===============================
+.productos {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f9f9f9;
+
+  .grid-productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 15px;
+    @include sombra(0,5px,15px,rgba(0,0,0,0.1));
+    padding: 20px;
+    transition: transform 0.2s ease;
+
+    &:hover { transform: translateY(-5px); }
+
+    img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
+    h3 { font-size: 1.2rem; margin: 10px 0; color: #444; }
+    p { font-size: 0.95rem; color: #666; }
+
+    .precio-acciones {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+
+      .precio {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #25412e;
+      }
+
+      .acciones {
+        display: flex;
+        gap: 12px;
+
+        i {
+          font-size: 1.2rem;
+          color: #25412e;
+          cursor: pointer;
+          transition: transform 0.2s ease, color 0.3s ease;
+
+          &:hover { transform: scale(1.2); color: #25412e; }
+        }
+      }
+    }
+  }
+}
+
+// ===============================
+// Reseñas
+// ===============================
+.resenias {
+  background-color: #f0f0f0;
+  padding: 30px;
+  margin-top: 60px;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 30px;
+    font-family: $font-titulos;
+    font-size: 30px;
+    font-weight: 900;
+  }
+
+  .resenias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .resenia {
+    @extend .card;
+    font-style: italic;
+
+    p { font-size: 16px; margin-bottom: 1rem; }
+    h4 { font-weight: normal; color: #444; font-size: 18px; }
+  }
+}
+
+// ===============================
+// Acordeón
+// ===============================
+.accordion-button {
+  background-color: transparent;
+  color: #25412e;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: none;
+
+  &::after {
+    content: '▶';
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:not(.collapsed)::after { transform: rotate(90deg); }
+  &:hover { background-color: rgba(37,65,46,0.05); }
+}
+
+.accordion-body {
+  padding: 0.3rem 1.25rem;
+
+  a {
+    color: #333;
+    display: block;
+    padding: 5px 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+
+    &:hover { background-color: rgba(37,65,46,0.1); padding-left: 15px; }
+  }
+}
+
+// ===============================
+// Formulario / Contacto
+// ===============================
+.formulario, .contacto, .ubicacion {
+  background-color: #fff;
+  @include sombra(0,4px,12px,rgba(0,34,10,0.562));
+  padding: 50px;
+  border-radius: 8px;
+  margin: 50px;
+  text-align: center;
+
+  h2 {
+    font-family: $font-titulos;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+// ===============================
+// Inicio de sesión
+// ===============================
+.inicio-de-sesion {
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 8px;
+  margin: 50px;
+  text-align: center;
+  @include sombra(0,4px,12px,rgba(0,34,10,0.562));
+
+  h2 {
+    font-family: $font-titulos;
+    font-size: 30px;
+    font-weight: 900;
+  }
+
+  #registrate {
+    color: $color-secundario;
+    text-decoration: underline;
+  }
+}
+
+// ===============================
+// Sobre nosotros
+// ===============================
+.sobre-nosotros {
+  background-image: url("../assets/img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  position: relative;
+  padding: 80px 20px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+  }
+
+  h2, p {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ===============================
+// Footer
+// ===============================
+footer {
+  border-top: 1px solid #8a8585;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: $color-footer;
+  color: $color-secundario;
+  text-align: center;
+
+  .iconos-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    a {
+      color: #333;
+      font-size: 18px;
+    }
+  }
+}
+
+// ===============================
+// Responsive
+// ===============================
+@media (max-width: 768px) {
+  header { top: 65px; }
+  main { padding-top: 150px; }
+
+  .menu-toggle { display: block; }
+
+  .menu-movile {
+    display: none;
+    width: 100%;
+    background-color: $color-header;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 10px 0;
+
+    &.active { display: flex; justify-content: center; }
+
+    ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+
+      li a {
+        display: block;
+        padding: 12px 20px;
+        font-size: 18px;
+        background-color: #ffffff21;
+
+        &:hover { background-color: $color-principal; color: white; }
+      }
+    }
+  }
+
+  .grid-productos { grid-template-columns: 1fr; }
+  .sobre-nosotros { background-image: url("../assets/img/background-movile.jpg"); }
+}
