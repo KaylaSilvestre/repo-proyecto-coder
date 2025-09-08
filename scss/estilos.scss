@@ -8,6 +8,65 @@ $color-gris: #333;
 $color-prod: #25412e;
 $color-form-inicio: #3E5E4E;
 
+//Mixin
+@mixin flexbox ($direccion, $j-content, $align-items) {
+  display: flex;
+  flex-direction: $direccion;
+  justify-content:$j-content ;
+  align-items: $align-items;
+}
+
+@mixin grid($columns, $gap) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+@mixin text-style($f-weight, $f-size, $text-align) {
+  font-weight: $f-weight;
+  font-size: $f-size;
+  text-align: $text-align;
+}
+
+//Extend
+%btn-base {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+%card-base {
+  background: #fff;
+  border-radius: 15px;
+  @extend %sombra-suave;
+  padding: 20px;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+%sombra-suave {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+%sombra-green {
+  box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
+}
+
+%input-base {
+  margin-bottom: 30px;
+
+  &::placeholder {
+    border-radius: 4px;
+    padding: 5px;
+    margin: 5px 0;
+    width: 100%;
+  }
+}
 
 * {
   margin: 0;
@@ -24,9 +83,7 @@ body {
 h1, h2, h3 {
   font-family: $fuente-secundaria;
   color: #546B56;
-  font-weight: 900;
-  text-align: center;
-  font-size: 30px;
+  @include text-style(900, 30px, center);
 }
 
 ul {
@@ -45,6 +102,7 @@ li > a {
 
 // Popup
 div.popup {
+  @include text-style(bold, 16px, center);
   position: fixed;
   top: 0;
   left: 0;
@@ -52,8 +110,6 @@ div.popup {
   background: linear-gradient(90deg, #f8b195, #f67280);
   color: white;
   padding: 10px;
-  text-align: center;
-  font-weight: bold;
   z-index: 1000;
   animation: slideDown 0.6s ease-out;
 
@@ -70,7 +126,7 @@ footer {
 
 header {
   padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  @extend %sombra-suave;
   position: fixed;
   top: 40px;
   left: 0;
@@ -78,13 +134,10 @@ header {
   z-index: 10;
 
   div.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox(row, space-between, center);
 
     div.logo {
-      display: flex;
-      align-items: center;
+      @include flexbox(row, flex-start, center);
       gap: 10px;
 
       img {
@@ -92,8 +145,7 @@ header {
       }
 
       h3.logo-titulo {
-        font-size: 22px;
-        font-weight: 700;
+        @include text-style(700, 22px, start);
         color:$color-gris;
       }
     }
@@ -129,9 +181,7 @@ main {
 
   // Barra buscadora
   form.barra-buscadora {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(row, center, center);
     width: 400px;
     border-radius: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -146,37 +196,29 @@ main {
     }
 
     button {
+      @extend %btn-base;
       background-color: $color-hover;
       border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+      
       &:hover {
         background-color: #3E5E4E;
       }
 
       i {
-        color: white;
+        color: white; 
         font-size: 16px;
       }
     }
   }
 
   h1#slogan {
-    font-size: 25px;
-    text-align: center;
+    @include text-style(600, 25px, center);
     margin: 60px;
-    font-weight: 600;
   }
 
   h1#titulo-productos {
+    @include text-style(900, 30px, center);
     margin-bottom: 30px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: 900;
   }
 
   // Carrusel
@@ -184,7 +226,7 @@ main {
     max-width: 600px;
     max-height: 600px;
     margin: 40px auto;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     border-radius: 20px;
     overflow: hidden;
 
@@ -197,7 +239,7 @@ main {
       height: 100%;
 
       .carousel-item img {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        @extend %sombra-suave;
         border-radius: 15px;
         width: 100%;
         height: 100%;
@@ -206,20 +248,18 @@ main {
       }
 
       .carousel-item.active img {
-        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+        @extend %sombra-suave;
       }
     }
 
     .carousel-control-prev,
     .carousel-control-next {
+      @include flexbox(row, center, center);
       width: 40px;
       height: 40px;
       top: 50%;
       background: rgba(255, 255, 255, 0.8);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 24px;
       color: #000;
       text-decoration: none;
@@ -261,16 +301,14 @@ main {
     }
 
     .resenias-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      @include grid(repeat(auto-fit, minmax(250px, 1fr)), 1.5rem);
       max-width: 1000px;
       margin: 0 auto;
 
       .resenia {
         background-color: white;
         padding: 30px;
-        box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
+        @extend %sombra-green;
         font-style: italic;
 
         p {
@@ -283,9 +321,9 @@ main {
         }
 
         h4 {
-          font-weight: normal;
+          @include text-style(normal, 18px, start);
           color: #444;
-          font-size: 18px;
+          text-align: center;
         }
       }
 
@@ -293,21 +331,15 @@ main {
   }
 
   form.boton-ver-productos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(row, center, center);
     margin-top: 30px;
   }
 
   .boton {
+    @extend %btn-base;
     background-color: $color-hover;
     color: #FFFFFF;
     border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    align-items: center;
   }
 
   // Productos
@@ -321,22 +353,12 @@ main {
     }
 
     .grid-productos {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
+      @include grid(repeat(4, 1fr), 25px);
       max-width: 1200px;
       margin: auto;
 
       .card {
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        transition: transform 0.2s ease;
-
-        &:hover {
-          transform: translateY(-5px);
-        }
+        @extend %card-base;
 
         img {
           width: 100%;
@@ -345,10 +367,9 @@ main {
         }
 
         h3 {
-          font-size: 1.2rem;
+          @include text-style(500, 1.2rem, start);
           margin: 10px 0;
           color: #444;
-          font-weight: 500;
         }
 
         p {
@@ -357,14 +378,11 @@ main {
         }
 
         div.precio-acciones {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          @include flexbox(row, space-between, center);
           margin-top: 12px;
 
           .precio {
-            font-size: 1.1rem;
-            font-weight: bold;
+            @include text-style(bold, 1.1rem, start);
             color: $color-prod;
           }
 
@@ -404,10 +422,9 @@ main {
       }
 
       .accordion-button {
+        @include text-style(bold, 1.2rem, start);
         background-color: transparent;
         color: $color-prod;
-        font-weight: bold;
-        font-size: 1.2rem;
         box-shadow: none;
         transition: background-color 0.3s ease;
 
@@ -470,42 +487,32 @@ main {
       font-size: 20px;
     }
 
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
-    padding: 50px;
-    border-radius: 8px;
+    @include flexbox(row, center, stretch);
+    @extend %card-base;
     margin: 50px;
-    display: flex;
-    justify-content: center;
     gap: 200px;
     line-height: 2;
 
     .ubicacion {
       img {
+        @include flexbox(row, center, stretch);
         width: 300px;
         border: 1px solid $color-form-inicio;
         border-radius: 8px;
         margin: 10px 0;
-        display: flex;
-        justify-content: center;
       }
     }
   }
 
   // Formulario 
   section.formulario {
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
-    padding: 50px;
-    border-radius: 8px;
+    @extend %card-base;
     margin: 50px;
     text-align: center;
 
     form {
+      @include flexbox(column, flex-start, center);
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       gap: 10px;
       margin-bottom: 15px;
 
@@ -517,10 +524,7 @@ main {
 
       input::placeholder,
       textarea::placeholder {
-        border-radius: 4px;
-        padding: 5px;
-        margin: 5px 0;
-        width: 100%;
+         @extend %input-base;
       }
     }
 
@@ -533,28 +537,16 @@ section.inicio-de-sesion {
   border-radius: 8px;
   margin: 50px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 34, 10, 0.562);
+  @extend %sombra-green;
 
   input {
-    margin-bottom: 30px;
-
-    &::placeholder {
-      border: 1px solid $color-form-inicio;
-      border-radius: 4px;
-      padding: 5px;
-      margin: 5px 0;
-      width: 100%;
-    }
+    border: 1px solid $color-form-inicio;
+   @extend %input-base;
   }
 
   textarea {
-    &::placeholder {
-      border: 1px solid $color-form-inicio;
-      border-radius: 4px;
-      padding: 5px;
-      margin: 5px 0;
-      width: 100%;
-    }
+    border: 1px solid $color-form-inicio;
+   @extend %input-base;
   }
 
   #registrate {
@@ -562,6 +554,7 @@ section.inicio-de-sesion {
     text-decoration: underline;
   }
 }
+
 // Sobre Nosotros
 section.sobre-nosotros {
   background-image: url("../assets/img/background.jpg");
@@ -594,34 +587,26 @@ section.sobre-nosotros {
 }
 section.servicios {
   .grid {
-    display: flex;
+    @include flexbox(row, center, stretch);
     gap: 20px;
-    justify-content: center;
     margin-top: 20px;
 
     .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
+      @extend %card-base;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 250px;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: translateY(-5px);
-      }
-
+  
       p {
         font-family: "Inter", sans-serif;
         color: #666;
+        text-align: center;
       }
 
       h6 {
+        @include text-style(400, 18px,start);
         margin-top: 10px;
         font-family: "Playfair Display", serif;
-        font-size: 18px;
-        font-weight: 400;
+        text-align: center;
       }
 
     }
@@ -629,7 +614,6 @@ section.servicios {
 }
 
 }
-
 
 footer {
   border-top: 1px solid #8a8585;
@@ -639,8 +623,7 @@ footer {
   padding: 10px;
 
   div.iconos-footer {
-    display: flex;
-    justify-content: center;
+    @include flexbox(row, center, stretch);
     gap: 10px;
     padding-left: 36px;
 
@@ -651,8 +634,7 @@ footer {
   }
 
   li>a {
-    display: flex;
-    justify-content: center;
+    @include flexbox(row, center, stretch);
     margin-top: 5px;
   }
 }
@@ -677,10 +659,10 @@ footer {
 
   main {
     padding-top: 150px;
-
-    .barrabuscadora {
-      width: 300px;
-    }
+    
+      .barra-buscadora {
+        width: 280px !important;
+      }
 
     #slogan {
       font-size: 21px;

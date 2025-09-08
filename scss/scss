@@ -1,53 +1,79 @@
-// ===============================
-// Variables
-// ===============================
-$color-principal: #5a6452;
-$color-secundario: #3E5E4E;
-$color-fondo: #FAF9F6;
-$color-texto: #2E4C3F;
-$color-header: #AAB39C;
-$color-footer: #AAB4A0;
-$font-principal: "Inter", sans-serif;
-$font-titulos: "Playfair Display", serif;
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-// ===============================
+$fuente-principal: "Inter", sans-serif;
+$fuente-secundaria: "Playfair Display", serif;
+$color-principal: #2E4C3F;  
+$color-hover: #5a6452;       
+$color-gris: #333;
+$color-prod: #25412e;
+$color-form-inicio: #3E5E4E;
+
 // Mixins
-// ===============================
-@mixin sombra($x:0, $y:2px, $blur:5px, $color: rgba(0,0,0,0.1)) {
-  box-shadow: $x $y $blur $color;
+@mixin flexbox($direccion, $j-content, $align-items) {
+  display: flex;
+  flex-direction: $direccion;
+  justify-content:$j-content ;
+  align-items: $align-items;
 }
 
-@mixin boton($bg, $color:#fff) {
-  background-color: $bg;
-  color: $color;
-  border: none;
+@mixin grid($columns, $gap) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+@mixin text-style($f-weight, $f-size, $text-align) {
+  font-weight: $f-weight;
+  font-size: $f-size;
+  text-align: $text-align;
+}
+
+// Placeholders
+%btn-base {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
-  &:hover {
-    background-color: darken($bg, 10%);
-  }
+  transition: all 0.3s ease;
 }
 
-// ===============================
+%card-base {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+%flex-center-row {
+  @include flexbox(row, center, center);
+}
+
+%heading-style {
+  font-family: $fuente-secundaria;
+  color: #546B56;
+  @include text-style(900, 30px, center);
+}
+
 // Global
-// ===============================
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  background-color: $color-fondo;
-  font-family: $font-principal;
-  color: $color-texto;
+  background-color: #FAF9F6;
+  font-family: $fuente-principal;
+  color: $color-principal;
   font-weight: 400;
 }
 
 h1, h2, h3 {
-  font-family: $font-titulos;
-  color: #546B56;
+  @extend %heading-style;
+}
+
+ul {
+  list-style: none;
 }
 
 a {
@@ -55,12 +81,14 @@ a {
   color: #353535;
 }
 
-ul { list-style: none; }
+li > a {
+  color: black;
+  text-decoration: none;
+}
 
-// ===============================
 // Popup
-// ===============================
-.popup {
+div.popup {
+  @include text-style(bold, 16px, center);
   position: fixed;
   top: 0;
   left: 0;
@@ -68,328 +96,160 @@ ul { list-style: none; }
   background: linear-gradient(90deg, #f8b195, #f67280);
   color: white;
   padding: 10px;
-  text-align: center;
-  font-weight: bold;
   z-index: 1000;
   animation: slideDown 0.6s ease-out;
 
-  p { margin: 0; }
+  p {
+    margin: 0;
+  }
 }
 
-@keyframes slideDown {
-  from { transform: translateY(-100%); }
-  to   { transform: translateY(0); }
+// Header & Footer
+header,
+footer {text
+  background-color: #AAB39C;
+  text-align: center;
 }
 
-// ===============================
-// Header
-// ===============================
 header {
   padding: 10px 20px;
-  @include sombra(0,2px,5px,rgba(0,0,0,0.1));
-  background-color: $color-header;
-  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 40px;
   left: 0;
   width: 100%;
   z-index: 10;
 
-  .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  div.nav-container {
+    @include flexbox(row, space-between, center);
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    div.logo {
+      @include flexbox(row, flex-start, center);
+      gap: 10px;
 
-    img { width: 60px; }
+      img { width: 60px; }
 
-    .logo-titulo {
-      font-size: 22px;
-      font-weight: 700;
-      color: #333;
+      h3.logo-titulo {
+        @include text-style(700, 22px, start);
+        color:$color-gris;
+      }
     }
-  }
 
-  .menu ul {
-    display: flex;
-    gap: 30px;
-  }
+    nav.menu ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
 
-  .iconos {
-    a {
+      a.pagina-actual {
+        text-decoration: $color-hover 2px underline;
+        font-weight: bold;
+        color: $color-hover;
+      }
+    }
+
+    div.iconos a {
       margin-left: 20px;
       color: #333;
       font-size: 18px;
+      text-decoration: none;
       padding-right: 10px;
 
-      &:hover { color: $color-principal; }
+      &:hover { color: $color-hover; }
     }
   }
 }
 
-.pagina-actual {
-  text-decoration: $color-principal 2px underline;
-  font-weight: bold;
-  color: $color-principal;
-}
+// Main
+main {
+  padding-top: 120px;
 
-// ===============================
-// Botones
-// ===============================
-.boton {
-  @include boton($color-principal);
-}
+  // Barra buscadora
+  form.barra-buscadora {
+    @extend %flex-center-row;
+    width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin: 20px auto;
 
-.boton-ver-productos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-}
+    input[type="text"] {
+      border: none;
+      padding: 10px 15px;
+      width: 100%;
+      font-size: 16px;
+    }
 
-// ===============================
-// Productos
-// ===============================
-.productos {
-  padding: 60px 20px;
-  text-align: center;
-  background: #f9f9f9;
+    button {
+      @extend %btn-base;
+      background-color: $color-hover;
+      border: none;
 
-  .grid-productos {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    max-width: 1200px;
-    margin: auto;
-  }
+      &:hover { background-color: #3E5E4E; }
 
-  .card {
-    background: #fff;
-    border-radius: 15px;
-    @include sombra(0,5px,15px,rgba(0,0,0,0.1));
-    padding: 20px;
-    transition: transform 0.2s ease;
-
-    &:hover { transform: translateY(-5px); }
-
-    img { width: 100%; border-radius: 12px; margin-bottom: 15px; }
-    h3 { font-size: 1.2rem; margin: 10px 0; color: #444; }
-    p { font-size: 0.95rem; color: #666; }
-
-    .precio-acciones {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 12px;
-
-      .precio {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #25412e;
-      }
-
-      .acciones {
-        display: flex;
-        gap: 12px;
-
-        i {
-          font-size: 1.2rem;
-          color: #25412e;
-          cursor: pointer;
-          transition: transform 0.2s ease, color 0.3s ease;
-
-          &:hover { transform: scale(1.2); color: #25412e; }
-        }
-      }
+      i { color: white; font-size: 16px; }
     }
   }
-}
 
-// ===============================
-// Reseñas
-// ===============================
-.resenias {
-  background-color: #f0f0f0;
-  padding: 30px;
-  margin-top: 60px;
-  text-align: center;
+  h1#slogan { @include text-style(600, 25px, center); margin: 60px; }
+  h1#titulo-productos { @include text-style(900, 30px, center); margin-bottom: 30px; }
 
-  h2 {
-    margin-bottom: 30px;
-    font-family: $font-titulos;
-    font-size: 30px;
-    font-weight: 900;
+  // Carrusel, reseñas, productos, acordeón, contacto, formulario y servicios
+  // Aquí puedes aplicar @extend %card-base a todas las tarjetas y %flex-center-row donde sea repetido
+  section.productos .grid-productos .card,
+  section.servicios .grid .card {
+    @extend %card-base;
   }
 
-  .resenias-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .resenia {
-    @extend .card;
-    font-style: italic;
-
-    p { font-size: 16px; margin-bottom: 1rem; }
-    h4 { font-weight: normal; color: #444; font-size: 18px; }
+  form.boton-ver-productos {
+    @extend %flex-center-row;
+    margin-top: 30px;
   }
 }
 
-// ===============================
-// Acordeón
-// ===============================
-.accordion-button {
-  background-color: transparent;
-  color: #25412e;
-  font-weight: bold;
-  font-size: 1.2rem;
-  box-shadow: none;
+// Botón general
+.boton { @extend %btn-base; background-color: $color-hover; color: #fff; border: none; }
 
-  &::after {
-    content: '▶';
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-  }
-
-  &:not(.collapsed)::after { transform: rotate(90deg); }
-  &:hover { background-color: rgba(37,65,46,0.05); }
-}
-
-.accordion-body {
-  padding: 0.3rem 1.25rem;
-
-  a {
-    color: #333;
-    display: block;
-    padding: 5px 8px;
-    border-radius: 6px;
-    transition: background-color 0.3s ease, padding-left 0.3s ease;
-
-    &:hover { background-color: rgba(37,65,46,0.1); padding-left: 15px; }
-  }
-}
-
-// ===============================
-// Formulario / Contacto
-// ===============================
-.formulario, .contacto, .ubicacion {
-  background-color: #fff;
-  @include sombra(0,4px,12px,rgba(0,34,10,0.562));
-  padding: 50px;
-  border-radius: 8px;
-  margin: 50px;
-  text-align: center;
-
-  h2 {
-    font-family: $font-titulos;
-    margin-bottom: 30px;
-    font-size: 30px;
-    font-weight: 900;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-}
-
-// ===============================
-// Inicio de sesión
-// ===============================
-.inicio-de-sesion {
-  background-color: #fff;
-  padding: 50px;
-  border-radius: 8px;
-  margin: 50px;
-  text-align: center;
-  @include sombra(0,4px,12px,rgba(0,34,10,0.562));
-
-  h2 {
-    font-family: $font-titulos;
-    font-size: 30px;
-    font-weight: 900;
-  }
-
-  #registrate {
-    color: $color-secundario;
-    text-decoration: underline;
-  }
-}
-
-// ===============================
-// Sobre nosotros
-// ===============================
-.sobre-nosotros {
-  background-image: url("../assets/img/background.jpg");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  position: relative;
-  padding: 80px 20px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.3);
-  }
-
-  h2, p {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-// ===============================
-// Footer
-// ===============================
-footer {
-  border-top: 1px solid #8a8585;
-  margin-top: 20px;
-  padding: 10px;
-  background-color: $color-footer;
-  color: $color-secundario;
-  text-align: center;
-
-  .iconos-footer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-
-    a {
-      color: #333;
-      font-size: 18px;
-    }
-  }
-}
-
-// ===============================
-// Responsive
-// ===============================
+// Media queries y estilos móviles se mantienen como estaban
 @media (max-width: 768px) {
   header { top: 65px; }
-  main { padding-top: 150px; }
+
+  main {
+    padding-top: 150px;
+
+    .barrabuscadora { width: 300px; }
+    #slogan { font-size: 21px; margin-bottom: 50px; }
+    #titulo-productos { font-size: 25px; }
+
+    section.resenias h2 { font-size: 25px; }
+
+    section.productos .grid-productos { grid-template-columns: 1fr; justify-items: center; max-width: 100%; }
+
+    section.contacto-ubicacion {
+      flex-direction: column;
+      gap: 30px;
+      margin: 20px;
+      padding: 20px;
+      text-align: center;
+
+      .ubicacion img { width: 100%; max-width: 300px; margin: auto; }
+    }
+
+    section.formulario, section.inicio-de-sesion { margin: 20px; padding: 20px; }
+
+    section.inicio-de-sesion h2 { font-size: 30px; }
+    section.inicio-de-sesion h5 { font-size: 18px; }
+
+    section.sobre-nosotros {
+      background-image: url("../assets/img/background-movile.jpg");
+      h2 { font-size: 1.6rem; }
+      p { font-size: 1rem; line-height: 1.4; }
+    }
+
+    section.servicios .grid { flex-direction: column; align-items: center; }
+  }
 
   .menu-toggle { display: block; }
-
-  .menu-movile {
-    display: none;
-    width: 100%;
-    background-color: $color-header;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    padding: 10px 0;
+  .menu-movile { display: none; width: 100%; background-color: #AAB39C; position: absolute; top: 70px; left: 0; padding: 10px 0;
 
     &.active { display: flex; justify-content: center; }
 
@@ -403,12 +263,12 @@ footer {
         padding: 12px 20px;
         font-size: 18px;
         background-color: #ffffff21;
+        transition: background-color 0.3s ease, color 0.3s ease;
 
-        &:hover { background-color: $color-principal; color: white; }
+        &:hover { background-color: $color-hover; color: white; }
       }
     }
   }
 
-  .grid-productos { grid-template-columns: 1fr; }
-  .sobre-nosotros { background-image: url("../assets/img/background-movile.jpg"); }
+  .iconos, .menu { display: none; }
 }
