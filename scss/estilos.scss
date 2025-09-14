@@ -673,12 +673,12 @@ footer {
 // Media queries para móviles
 @media (max-width: 768px) {
   header {
-    top: 65px;
-  }
+      top: 40px;
+    }
 
   main {
     padding-top: 150px;
-    
+
       .barra-buscadora {
         width: 280px !important;
       }
