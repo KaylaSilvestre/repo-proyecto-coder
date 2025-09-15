@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "src": "/.*", "dest": "/index.html" },
+    { "handle": "filesystem" }
+  ],
+  "error": {
+    "404": "/404.html"
+  }
+}
