@@ -108,24 +108,38 @@
       </div>
     </section>
 
-    <section class="formulario">
-      <h2>Formulario de contacto</h2>
-      <form action="">
-        <label for="nombre"></label>
-        <input placeholder="Nombre" type="text" name="nombre" id="nombre">
+    <section class="formulario-contacto">
+  <h3>Formulario de contacto</h3>
+  <form>
+    <label>Nombre</label>
+    <div class="input-box">
+      <i class="fa fa-user"></i>
+      <input type="text" placeholder="Ingrese su nombre" required>
+    </div>
 
-        <label for="celular"></label>
-        <input placeholder="Celular" type="text" name="celular" id="celular">
+    <label>Celular</label>
+    <div class="input-box">
+      <i class="fa fa-phone"></i>
+      <input type="tel" placeholder="Ingrese su celular" required>
+    </div>
 
-        <label for="gmail"></label>
-        <input placeholder="Gmail" type="gmail" name="gmail" id="gmail">
+    <label>Correo electrónico</label>
+    <div class="input-box">
+      <i class="fa fa-envelope"></i>
+      <input type="email" placeholder="Ingrese su email" required>
+    </div>
 
-        <label for="mensaje"></label>
-        <textarea placeholder="Déjanos tu mensaje" name="mensaje" id="mensaje"></textarea>
-      </form>
+    <label>Mensaje</label>
+<div class="input-box textarea-box">
+  <i class="fa fa-comment"></i>
+  <textarea placeholder="Déjanos tu mensaje" required></textarea>
+</div>
 
-      <input class="boton" type="submit" value="Enviar">
-    </section>
+
+    <input class="boton" type="submit" value="Enviar">
+  </form>
+</section>
+
   </main>
 
   <footer>
@@ -137,12 +151,7 @@
       <a href="https://www.tiktok.com/@hechopami_" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
     </div>
 
-    <nav>
-      <ul>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="./sobre-nosotros.html">Sobre nosotros</a></li>
-      </ul>
-    </nav>
+    <p>&copy; 2025 Hecho Pa’Mi. Todos los derechos reservados.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
