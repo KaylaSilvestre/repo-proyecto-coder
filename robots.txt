@@ -1,0 +1,9 @@
+# Bloqueo para motores de búsqueda de la página de inicio de sesión
+User-agent: *
+Disallow: /pages/login.html
+
+# Permitir rastreo de todas las demás páginas
+Allow: /
+
+# Indicar la ubicación del sitemap
+Sitemap: https://hechopami.uy/sitemap.xml
