@@ -197,37 +197,37 @@ header {
 main {
   padding-top: 120px;
 
-  // Barra buscadora
-  form.barra-buscadora {
-    @include flexbox(row, center, center);
-    width: 400px;
+
+  // Barra de búsqueda
+form.barra-buscadora {
+  position: relative;
+  width: 400px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 40px 10px 15px; // espacio para la lupa
+    font-size: 16px;
     border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    margin: 20px auto;
+    border: 1px solid #ccc;
+    outline: none;
 
-    input[type="text"] {
-      border: none;
-      padding: 10px 15px;
-      width: 100%;
-      font-size: 16px;
-    }
-
-    button {
-      @extend %btn-base;
-      background-color: $color-hover;
-      border: none;
-      
-      &:hover {
-        background-color: #3E5E4E;
-      }
-
-      i {
-        color: white; 
-        font-size: 16px;
-      }
+    &:focus {
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
   }
+
+  .icono-lupa {
+    position: absolute;
+    right: 15px;
+    color: #555;
+    font-size: 18px;
+    pointer-events: none;
+  }
+}
+
 
   h1#slogan {
     @include text-style(600, 25px, center);

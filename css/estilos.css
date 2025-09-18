@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-main .boton, main form.barra-buscadora button {
+main .boton {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -167,32 +167,29 @@ main {
   padding-top: 120px;
 }
 main form.barra-buscadora {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   width: 400px;
-  border-radius: 25px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
   margin: 20px auto;
+  display: flex;
+  align-items: center;
 }
 main form.barra-buscadora input[type=text] {
-  border: none;
-  padding: 10px 15px;
   width: 100%;
+  padding: 10px 40px 10px 15px;
   font-size: 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
 }
-main form.barra-buscadora button {
-  background-color: #5a6452;
-  border: none;
+main form.barra-buscadora input[type=text]:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-main form.barra-buscadora button:hover {
-  background-color: #3E5E4E;
-}
-main form.barra-buscadora button i {
-  color: white;
-  font-size: 16px;
+main form.barra-buscadora .icono-lupa {
+  position: absolute;
+  right: 15px;
+  color: #555;
+  font-size: 18px;
+  pointer-events: none;
 }
 main h1#slogan {
   font-weight: 600;
@@ -465,8 +462,9 @@ main section.formulario-contacto form {
 }
 main section.formulario-contacto form label {
   font-weight: 500;
-  margin-bottom: 0.3rem;
+  font-size: 18px;
   text-align: left;
+  margin-bottom: 0.3rem;
 }
 main section.formulario-contacto form .input-box {
   position: relative;
@@ -503,8 +501,9 @@ main .text-inicio h2 {
   margin-top: 50px;
 }
 main .text-inicio p {
-  text-align: center;
+  font-weight: 400;
   font-size: 20px;
+  text-align: center;
   margin-top: 10px;
 }
 main section.inicio-de-sesion {
@@ -523,8 +522,9 @@ main section.inicio-de-sesion form {
 }
 main section.inicio-de-sesion form label {
   font-weight: 500;
-  margin-bottom: 0.3rem;
+  font-size: 18px;
   text-align: left;
+  margin-bottom: 0.3rem;
 }
 main section.inicio-de-sesion form .input-box {
   position: relative;
