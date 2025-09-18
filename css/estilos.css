@@ -62,7 +62,9 @@ body {
   font-weight: 400;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Playfair Display", serif;
   color: #546B56;
   font-weight: 900;
@@ -197,11 +199,11 @@ main h1#slogan {
   text-align: center;
   margin: 60px;
 }
-main h1#titulo-productos {
+main h2#titulo-productos {
   font-weight: 900;
   font-size: 30px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 40px;
 }
 main div#carouselExampleIndicators {
   max-width: 600px;
@@ -308,7 +310,7 @@ main .boton {
   border: none;
 }
 main section.productos {
-  padding: 60px 20px;
+  padding: 20px 20px;
   text-align: center;
   background: #f9f9f9;
 }
@@ -330,7 +332,7 @@ main section.productos .grid-productos .card img {
 main section.productos .grid-productos .card h3 {
   font-weight: 500;
   font-size: 1.2rem;
-  text-align: start;
+  text-align: center;
   margin: 10px 0;
   color: #444;
 }
@@ -656,15 +658,19 @@ footer p {
   }
   main {
     padding-top: 150px;
+    margin-bottom: 10px;
   }
   main .barra-buscadora {
+    margin: 0 auto;
     width: 280px !important;
   }
-  main #slogan {
+  main h1#slogan {
     font-size: 21px;
     margin-bottom: 50px;
+    margin-top: 10px;
   }
-  main #titulo-productos {
+  main h1#titulo-productos {
+    margin-top: 10px;
     font-size: 25px;
   }
   main section.resenias h2 {
@@ -691,21 +697,15 @@ footer p {
     margin: 20px;
     padding: 20px;
   }
-  main section.inicio-de-sesion {
-    margin: 20px;
-    padding: 20px;
-  }
-  main section.inicio-de-sesion h2 {
-    font-size: 30px;
-  }
-  main section.inicio-de-sesion h5 {
-    font-size: 18px;
+  main .text-inicio h2 {
+    margin-top: 10px;
   }
   main section.sobre-nosotros {
     background-image: url("../assets/img/background-movile.jpg");
   }
   main section.sobre-nosotros h2 {
     font-size: 1.6rem;
+    margin-top: 10px;
   }
   main section.sobre-nosotros p {
     font-size: 1rem;
